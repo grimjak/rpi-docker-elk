@@ -7,10 +7,12 @@ services:
 
   elasticsearch:
     image: ind3x/rpi-elasticsearch:latest
-    command: elasticsearch -Des.network.host=192.168.1.204
+    #command: elasticsearch -Des.network.host=192.168.1.204
+    volumes: /media/Main_/data/elasticsearch/data:/usr/share/elasticsearch/data 
     ports:
-      - "9200:9200"
+      - "9200:9200" 
       - "9300:9300"
+    
 
   logstash:
     build: logstash/
