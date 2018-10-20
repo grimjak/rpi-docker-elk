@@ -1,8 +1,5 @@
 version: '2'
 
-volumes:
-  kibaba_config: {}
-
 networks:
   default:
 
@@ -10,7 +7,7 @@ services:
 
   elasticsearch:
     image: ind3x/rpi-elasticsearch:latest
-    command: elasticsearch -Des.network.host=0.0.0.0
+    command: elasticsearch -Des.network.host=192.168.1.204
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -22,14 +19,5 @@ services:
       - ./logstash/config:/etc/logstash/conf.d
     ports:
       - "5000:5000"
-    links:
-      - elasticsearch
-
-  kibana:
-    build: kibana/
-    volumes:
-      - ./kibana/config/:/opt/kibana/config/
-    ports:
-      - "5601:5601"
     links:
       - elasticsearch
