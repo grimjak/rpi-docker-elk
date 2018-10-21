@@ -23,6 +23,6 @@ services:
       - ./logstash/config:/etc/logstash/conf.d
       - /var/log:/var/log
     ports:
-      - "5000:5000"
+      - "5000:5000/udp"
     links:
       - elasticsearch
