@@ -47,4 +47,5 @@ for device in evoclient.temperatures():
       }
     jsonbody.append(m)
 
+#switch to outputing json to run this in telegraf
 client.write_points(jsonbody)
