@@ -1,0 +1,555 @@
+{
+  "logstash-2018.11.11" : {
+    "mappings" : {
+      "_default_" : {
+        "_all" : {
+          "enabled" : true,
+          "omit_norms" : true
+        },
+        "dynamic_templates" : [ {
+          "message_field" : {
+            "mapping" : {
+              "fielddata" : {
+                "format" : "disabled"
+              },
+              "index" : "analyzed",
+              "omit_norms" : true,
+              "type" : "string"
+            },
+            "match" : "message",
+            "match_mapping_type" : "string"
+          }
+        }, {
+          "string_fields" : {
+            "mapping" : {
+              "fielddata" : {
+                "format" : "disabled"
+              },
+              "index" : "analyzed",
+              "omit_norms" : true,
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "ignore_above" : 256,
+                  "index" : "not_analyzed",
+                  "type" : "string"
+                }
+              }
+            },
+            "match" : "*",
+            "match_mapping_type" : "string"
+          }
+        } ],
+        "properties" : {
+          "@timestamp" : {
+            "type" : "date",
+            "format" : "strict_date_optional_time||epoch_millis"
+          },
+          "@version" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "geoip" : {
+            "dynamic" : "true",
+            "properties" : {
+              "ip" : {
+                "type" : "ip"
+              },
+              "latitude" : {
+                "type" : "float"
+              },
+              "location" : {
+                "type" : "geo_point"
+              },
+              "longitude" : {
+                "type" : "float"
+              }
+            }
+          }
+        }
+      },
+      "sonicwall" : {
+        "_all" : {
+          "enabled" : true,
+          "omit_norms" : true
+        },
+        "dynamic_templates" : [ {
+          "message_field" : {
+            "mapping" : {
+              "fielddata" : {
+                "format" : "disabled"
+              },
+              "index" : "analyzed",
+              "omit_norms" : true,
+              "type" : "string"
+            },
+            "match" : "message",
+            "match_mapping_type" : "string"
+          }
+        }, {
+          "string_fields" : {
+            "mapping" : {
+              "fielddata" : {
+                "format" : "disabled"
+              },
+              "index" : "analyzed",
+              "omit_norms" : true,
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "ignore_above" : 256,
+                  "index" : "not_analyzed",
+                  "type" : "string"
+                }
+              }
+            },
+            "match" : "*",
+            "match_mapping_type" : "string"
+          }
+        } ],
+        "properties" : {
+          "@timestamp" : {
+            "type" : "date",
+            "format" : "strict_date_optional_time||epoch_millis"
+          },
+          "@version" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "category" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "dstMac" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "dstint" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "dstip" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "dstname" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "dstport" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "fw_action" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "geoip" : {
+            "dynamic" : "true",
+            "properties" : {
+              "area_code" : {
+                "type" : "long"
+              },
+              "city_name" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "continent_code" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "country_code2" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "country_code3" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "country_name" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "dma_code" : {
+                "type" : "long"
+              },
+              "ip" : {
+                "type" : "ip"
+              },
+              "latitude" : {
+                "type" : "float"
+              },
+              "location" : {
+                "type" : "geo_point"
+              },
+              "longitude" : {
+                "type" : "float"
+              },
+              "postal_code" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "real_region_name" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "region_name" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "timezone" : {
+                "type" : "string",
+                "norms" : {
+                  "enabled" : false
+                },
+                "fielddata" : {
+                  "format" : "disabled"
+                },
+                "fields" : {
+                  "raw" : {
+                    "type" : "string",
+                    "index" : "not_analyzed",
+                    "ignore_above" : 256
+                  }
+                }
+              }
+            }
+          },
+          "host" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "message" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            }
+          },
+          "msg" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "pri" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "srcMac" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "srcint" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "srcip" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "srcport" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "tags" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "type" : {
+            "type" : "string",
+            "norms" : {
+              "enabled" : false
+            },
+            "fielddata" : {
+              "format" : "disabled"
+            },
+            "fields" : {
+              "raw" : {
+                "type" : "string",
+                "index" : "not_analyzed",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
