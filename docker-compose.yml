@@ -33,3 +33,20 @@ services:
     environment:
       - "LS_JAVA_OPTS=-Xmx256m -Xms256m"
     mem_limit: 365m
+
+  influxdb:
+    image: hypriot/rpi-influxdb
+    ports: 
+      - "8086:8086"
+    volumes:
+      - /etc/influxdb/influxdb.conf
+
+  telegraf:
+    image: arm32v7/telegraf:latest
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+    volumes:
+      - /etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+    depends_on:
+      - influxdb
