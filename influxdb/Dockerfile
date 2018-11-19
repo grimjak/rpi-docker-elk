@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     --no-install-recommends && \ 
     curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add - source /etc/os-release && \
-    echo "deb https://repos.influxdata.com/debian jessie stable" | sudo tee /etc/apt/sources.list.d/influxdb.list && \
+    echo "deb https://repos.influxdata.com/debian stretch stable" | sudo tee /etc/apt/sources.list.d/influxdb.list && \
     apt-get update && apt-get install -y \
     influxdb=1.6.4-1 \
     --no-install-recommends && \
