@@ -1,9 +1,9 @@
 #!/usr/bin/python
 import sys
-from influxdb import InfluxDBClient
+#from influxdb import InfluxDBClient
 from evohomeclient import EvohomeClient
 
-client = InfluxDBClient('192.168.1.204',8086,'root','root','telegraf')
+#client = InfluxDBClient('192.168.1.204',8086,'root','root','telegraf')
 
 evoclient = EvohomeClient('info@grimjak.org.uk', 'Val1n0rho')
 
@@ -48,4 +48,5 @@ for device in evoclient.temperatures():
     jsonbody.append(m)
 
 #switch to outputing json to run this in telegraf
-client.write_points(jsonbody)
+#client.write_points(jsonbody)
+print(jsonbody)
