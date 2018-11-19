@@ -36,13 +36,12 @@ services:
 
   influxdb:
     build: influxdb
+    command: influxd -config=/etc/influxdb/influxdb.conf
     ports: 
       - "8086:8086"
     volumes:
       - /etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
-      - /media/Main/data/influxdb/meta:/media/Main/data/influxdb/meta
-      - /media/Main/data/influxdb/data:/media/Main/data/influxdb/data
-      - /media/Main/data/influxdb/wal:/media/Main/data/influxdb/wal
+      - /media/Main/data/influxdb:/media/Main/data/influxdb
 
   telegraf:
     image: arm32v7/telegraf:latest
