@@ -35,7 +35,7 @@ services:
     mem_limit: 365m
 
   influxdb:
-    image: hypriot/rpi-influxdb
+    build: influxdb
     ports: 
       - "8086:8086"
     volumes:
