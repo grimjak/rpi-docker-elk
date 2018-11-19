@@ -39,7 +39,10 @@ services:
     ports: 
       - "8086:8086"
     volumes:
-      - /etc/influxdb/influxdb.conf
+      - /etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
+      - /media/Main/data/influxdb/meta:/media/Main/data/influxdb/meta
+      - /media/Main/data/influxdb/data:/media/Main/data/influxdb/data
+      - /media/Main/data/influxdb/wal:/media/Main/data/influxdb/wal
 
   telegraf:
     image: arm32v7/telegraf:latest
@@ -47,6 +50,6 @@ services:
       - "8083:8083"
       - "8086:8086"
     volumes:
-      - /etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+      - /etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - influxdb
