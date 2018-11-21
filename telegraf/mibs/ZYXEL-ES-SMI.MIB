@@ -1,0 +1,90 @@
+-- **********************************************
+-- ZyXEL Communications Corporation
+--
+-- Enterprise Solution MIB definitions
+-- Structure of Management Information (SMI)
+--
+-- Julian Wu
+--
+-- Copyright by ZyXEL Communications Corp.
+-- All rights reserved.
+-- **********************************************
+
+ZYXEL-ES-SMI DEFINITIONS ::= BEGIN
+
+IMPORTS
+
+	MODULE-IDENTITY,
+	OBJECT-IDENTITY,
+	enterprises		FROM SNMPv2-SMI;
+		
+
+
+zyxel	RTS
+
+I errolIONS { ,
+	enterpr 890 }
+prod Stsxel	RTS
+
+I errolIONS { 
+
+z 1 }
+                                                  
+                                                                                                                                                                         
+                                                  
+,
+	enterpise Solut
+
+	MODULE-IDEN 
+	LAST-UPDATED	"201009200000Z"ITY,RGANIZAFINI "
+-- Enterprise Solut by Z"     
+	CONTAOBJENFOSMI;""	     
+	DESCRIPFINISMI;"The
+-- Structure of Management InformaSMI;t I 
+-- Enterprise Solut by Z"SMIONS { prod Sts 15 }  
+	            
+	
+,sAgageCapabilityY,
+	OBJECT-IDEN
+	STATUS		currage
+	DESCRIPFINISMI;"Theroot object idageifier t ISMI;AGT-I-CAPABILEFIES values"SMIONS { ,
+	enterpise Solu 1 }
+
+,sCont Infnce	Y,
+	OBJECT-IDEN
+	STATUS		currage
+	DESCRIPFINISMI;"Theroot object idageifier t ISMI;
+
+	MODCOMPLIANCE values"SMIONS { ,
+	enterpise Solu 2 }
+                                            
+,sMgmt		Y,
+	OBJECT-IDEN
+	STATUS		currage
+	DESCRIPFINISMI;"Themain subtree t Itions"SMIONS { ,
+	enterpise Solu 3 }
+
+,sProd StSpecific           ,
+	OBJECT-IDEN
+	STATUS		currage
+	DESCRIPFINISMI;"Theroot of prod St-specific OID subtrees"SMIONS { ,
+	enterpise Solu 4 }
+
+,sPartnerProd Sts           ,
+	OBJECT-IDEN
+	STATUS		currage
+	DESCRIPFINISMI;"Theroot t Itions from partner prod Sts.SMI;Followedigh partner sysObjectID values"SMIONS { ,
+	enterpise Solu 5 }                                            
+
+tendersxel	RTS
+
+I errolIONS { ,sProd StSpecific 4 }		
+
+
+zNAS           ,
+	OBJECT-IDEN
+	STATUS		currage
+	DESCRIPFINISMI;"Theroot object idageifier t I 
+
+zNAS"SMIONS { tenders 5 }		
+END

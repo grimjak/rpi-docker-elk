@@ -42,6 +42,7 @@ services:
     volumes:
       - /etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
       - /media/Main/data/influxdb:/media/Main/data/influxdb
+    mem_limit: 365m
 
   telegraf:
     image: arm32v7/telegraf:latest
@@ -49,3 +50,4 @@ services:
       - /etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - influxdb
+    mem_limit: 365m
