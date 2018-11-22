@@ -45,7 +45,7 @@ services:
     mem_limit: 365m
 
   telegraf:
-    image: arm32v7/telegraf:latest
+    build: telegraf
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
