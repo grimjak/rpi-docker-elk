@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 import sys
 #from influxdb import InfluxDBClient
 from evohomeclient import EvohomeClient
@@ -7,46 +7,11 @@ from evohomeclient import EvohomeClient
 
 evoclient = EvohomeClient('info@grimjak.org.uk', 'Val1n0rho')
 
-jsonbody = []
 #time = int(time.time())
+
+
 for device in evoclient.temperatures():
-
     if device["thermostat"]=="DOMESTIC_HOT_WATER" :
-      m = {
-        "measurement": "temperature",
-        "tags" :{
-          "room": "Hot water",
-          "sensor": "1"
-        },
-        "fields": {
-          "value": device["temp"]
-        },
-      }
-      jsonbody.append(m)
+      print ("evohome,room=hotwater temperature="+str(device["temp"]))
     else:
-      m = {
-        "measurement": "temperature",
-        "tags" :{
-          "room": device["name"],
-          "sensor": "1"
-        },
-        "fields": {
-          "value": device["temp"]
-        }
-      }
-      jsonbody.append(m)
-      m = {
-        "measurement": "setpoint",
-        "tags" :{
-          "room": device["name"],
-          "sensor": "1"
-        },
-        "fields": {
-          "value": device["setpoint"]
-        }
-      }
-    jsonbody.append(m)
-
-#switch to outputing json to run this in telegraf
-#client.write_points(jsonbody)
-print(jsonbody)
+      print ("evohome,room="+device["name"].translate(str.maketrans({" ":"\ "}))+" temperature="+str(device["temp"])+",setpoint="+str(device["setpoint"]))
