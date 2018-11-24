@@ -1,9 +1,11 @@
-FROM FROM resin/raspberry-pi-alpine-python:3
+FROM resin/raspberrypi3-python:3
 
 # Setup external package-sources
 RUN apt-get update && apt-get install -y \
     apt-transport-https \
     curl \
+    snmp \
+    snmpd \
     --no-install-recommends && \ 
     curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add - && \
     echo "deb https://repos.influxdata.com/debian stretch stable" | sudo tee /etc/apt/sources.list.d/influxdb.list  && \
@@ -14,11 +16,14 @@ RUN apt-get update && apt-get install -y \
     apt-transport-https && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install speedtest-cli && \
-    pip install evohome-client
+RUN pip install speedtest-cli  && \
+    pip install evohomeclient
 
 COPY ./mibs /usr/share/snmp/mibs
 COPY ./evohome.py /usr/app/evohome.py
 COPY ./telegraf.conf /etc/telegraf/telegraf.conf
+RUN chmod +rx /usr/app/evohome.py
+RUN chmod +r /usr/share/snmp/mibs
 
+USER telegraf
 CMD ["telegraf"]
