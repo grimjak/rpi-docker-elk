@@ -22,8 +22,9 @@ RUN pip install speedtest-cli  && \
 COPY ./mibs /usr/share/snmp/mibs
 COPY ./evohome.py /usr/app/evohome.py
 COPY ./telegraf.conf /etc/telegraf/telegraf.conf
-COPY ./test.py /usr/app/test.py
+COPY ./octopus.py /usr/app/octopus.py
 RUN chmod ugo+rx /usr/app/evohome.py
+RUN chmod ugo+rx /ust/app/octopus.py
 RUN chmod ugo+r /usr/share/snmp/mibs
 
 USER telegraf
