@@ -37,6 +37,7 @@ services:
   influxdb:
     build: influxdb
     command: influxd -config=/etc/influxdb/influxdb.conf
+    restart: unless-stopped
     ports: 
       - "8086:8086"
     volumes:
@@ -46,6 +47,7 @@ services:
 
   telegraf:
     build: telegraf
+    restart: unless-stopped
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock
