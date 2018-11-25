@@ -24,8 +24,9 @@ COPY ./evohome.py /usr/app/evohome.py
 COPY ./telegraf.conf /etc/telegraf/telegraf.conf
 COPY ./octopus.py /usr/app/octopus.py
 RUN chmod ugo+rx /usr/app/evohome.py
-RUN chmod ugo+rx /ust/app/octopus.py
+RUN chmod ugo+rx /usr/app/octopus.py
 RUN chmod ugo+r /usr/share/snmp/mibs
+RUN usermod -aG docker telegraf
 
 USER telegraf
 CMD ["telegraf"]
