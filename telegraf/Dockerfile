@@ -23,8 +23,11 @@ COPY ./mibs /usr/share/snmp/mibs
 COPY ./evohome.py /usr/app/evohome.py
 COPY ./telegraf.conf /etc/telegraf/telegraf.conf
 COPY ./octopus.py /usr/app/octopus.py
+COPY ./weather.py /usr/app/weather.py
 RUN chmod ugo+rx /usr/app/evohome.py
 RUN chmod ugo+rx /usr/app/octopus.py
+RUN chmod ugo+rx /usr/app/weather.py
+
 RUN chmod ugo+r /usr/share/snmp/mibs
 
 CMD ["telegraf"]

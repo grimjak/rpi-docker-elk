@@ -8,4 +8,4 @@ timestampstr = contents['results'][0]['interval_end']
 timestamp = datetime.datetime.strptime(timestampstr, "%Y-%m-%dT%H:%M:%SZ")
 consumption = contents['results'][0]['consumption']
 
-print('energy,type=electricity consumption='+str(consumption)+' '+str(1000*timestamp.timestamp()))
+print('energy,type=electricity consumption='+str(consumption)+' '+str(int(1e9*timestamp.timestamp()))
