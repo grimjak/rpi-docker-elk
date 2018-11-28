@@ -3,8 +3,28 @@ version: '2'
 networks:
   default:
 
-services:
+volumes:
+  kibana_data: {}
+  grafana_data: {}
 
+services:
+  grafana:
+    image: fg2it/grafana-armhf:v4.6.3
+    restart: unless-stopped
+    networks:
+      - default
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - config.monitoring
+
+  kibana:
+    build: kibana/
+    restart: unless-stopped
+    ports:
+      - "5601:5601"
   elasticsearch:
     image: ind3x/rpi-elasticsearch:latest
     restart: unless-stopped
@@ -17,7 +37,6 @@ services:
       - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
     mem_limit: 256m
     
-
   logstash:
     build: logstash/
     command: logstash -f /etc/logstash/conf.d/logstash.conf
