@@ -5,7 +5,8 @@ networks:
 
 services:
   grafana:
-    image: grafana/grafana:5.1.0
+    image: logging/grafana
+    build grafana/
     restart: unless-stopped
     networks:
       - default
