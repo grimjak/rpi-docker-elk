@@ -3,10 +3,6 @@ version: '2'
 networks:
   default:
 
-volumes:
-  kibana_data: {}
-  grafana_data: {}
-
 services:
   grafana:
     image: fg2it/grafana-armhf:v4.6.3
@@ -16,20 +12,22 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - grafana_data:/var/lib/grafana
+      - /mnt/data/grafana:/var/lib/grafana
     env_file:
       - config.monitoring
 
   kibana:
+    image: logging/kibana
     build: kibana/
     restart: unless-stopped
     ports:
       - "5601:5601"
+
   elasticsearch:
     image: ind3x/rpi-elasticsearch:latest
     restart: unless-stopped
     volumes:
-      - /media/Main_/data/elasticsearch/data:/usr/share/elasticsearch/data 
+      - /mnt/data/elasticsearch/data:/usr/share/elasticsearch/data 
     ports:
       - "9200:9200" 
       - "9300:9300"
@@ -38,6 +36,7 @@ services:
     mem_limit: 256m
     
   logstash:
+    image: logging/logstash
     build: logstash/
     command: logstash -f /etc/logstash/conf.d/logstash.conf
     restart: unless-stopped
@@ -55,17 +54,19 @@ services:
 
   influxdb:
     build: influxdb
+    image: logging/influxdb
     command: influxd -config=/etc/influxdb/influxdb.conf
     restart: unless-stopped
     ports: 
       - "8086:8086"
     volumes:
       - ./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
-      - /media/Main/data/influxdb:/media/Main/data/influxdb
+      - /mnt/data/influxdb:/media/Main/data/influxdb
     mem_limit: 256m
 
   telegraf:
     build: telegraf
+    image: logging/telegraf
     restart: unless-stopped
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
