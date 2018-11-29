@@ -18,7 +18,7 @@ RUN apt-get udate && apt-get install wget && \
 RUN apt-get update && apt-get install -qq -y tar libfontconfig wget ca-certificates && \
     mkdir -p "$GF_PATHS_HOME/.aws" && \
     wget "$GRAFANA_URL" && \
-    dpkg -i grafana_5.3.4_armhf.deb
+    dpkg -i grafana_5.3.4_armhf.deb && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     groupadd -r -g $GF_GID grafana && \
