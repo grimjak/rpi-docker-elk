@@ -12,9 +12,6 @@ ENV PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
     GF_PATHS_PLUGINS="/var/lib/grafana/plugins" \
     GF_PATHS_PROVISIONING="/etc/grafana/provisioning"
 
-RUN apt-get udate && apt-get install wget && \
-    wget https://dl.grafana.com/oss/release/grafana_5.3.4_armhf.deb &&
-
 RUN apt-get update && apt-get install -qq -y tar libfontconfig wget ca-certificates && \
     mkdir -p "$GF_PATHS_HOME/.aws" && \
     wget "$GRAFANA_URL" && \
